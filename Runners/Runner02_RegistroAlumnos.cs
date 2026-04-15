@@ -16,6 +16,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners
             {
                 Console.WriteLine("Ingresa la acción deseada:");
                 Console.WriteLine("1. Registrar alumno");
+                Console.WriteLine("2. Visualizar todos los registros");
                 Console.WriteLine("0. Salir");
                 opcion = Convert.ToInt32(Console.ReadLine());
                 switch (opcion)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using APS_Eq_TeamAltF4_U3.Models;
 
 namespace APS_Eq_TeamAltF4_U3.Runners
@@ -30,7 +31,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners
                         Console.WriteLine("Ingresa el costo de la comida");
                         int costo = Convert.ToInt32(Console.ReadLine());
                         Comida comida = new Comida(lugarEnMenu, nombre, paisOrigen, costo);
-                        StreamWriter sw = new StreamWriter("comida.csv");
+                        StreamWriter sw = new StreamWriter("comida.csv", append: true);
                         sw.WriteLine(comida.LugarEnMenu + "," + comida.Nombre + "," + comida.PaisOrigen + "," + comida.Costo);
                         sw.Flush();
                         sw.Close();
