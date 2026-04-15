@@ -36,7 +36,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners
             }
             */
             int alumnos_registrados = alumnos.Count;
-                int opcion = 0;
+            int opcion = 0;
             do
             {
                 Console.WriteLine("Ingresa la acción deseada:");
