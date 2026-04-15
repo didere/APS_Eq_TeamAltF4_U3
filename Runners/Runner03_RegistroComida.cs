@@ -34,7 +34,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners
             int opcion = 0; 
             do
             {
-                Console.WriteLine("Que quieres hacer:");
+                Console.WriteLine("Bienvenido al menu digital de el restaurante Mr. Worldwide:");
                 Console.WriteLine("1. Registrar comida");
                 Console.WriteLine("2.- Ver el menu ");
                 Console.WriteLine("0. Salir");

@@ -14,18 +14,17 @@ namespace APS_Eq_TeamAltF4_U3.Runners
             if (File.Exists(ruta)) //si existe
             {
                 //cargamos el archivo
-                    foreach(string linea in File.ReadLines(ruta))
-                    {
-                        //Console.WriteLine(linea); 
-                        string[] datos = linea.Split(',');
-                        long matricula = Convert.ToInt64(datos[0]);
-                        string nombre = datos[1];
-                        Alumno al = new Alumno(matricula, nombre);
-                        alumnos.Add(al);
-                    }
-            } 
+                foreach (string linea in File.ReadLines(ruta))
+                {
+                    string[] datos = linea.Split(',');
+                    long matricula = Convert.ToInt64(datos[0]);
+                    string nombre = datos[1];
+                    Alumno al = new Alumno(matricula, nombre);
+                    alumnos.Add(al);
+                }
+            }
             else
-            
+
             {
                 Console.WriteLine("No existen registros previos");
             }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,33 +8,65 @@ namespace APS_Eq_TeamAltF4_U3.Models
 {
     public class Videojuego
     {
-        private int id;
+        private int lugarEnElCatalogo;
         private string nombre;
         private string genero;
-        public int Id
+        private string plataforma;
+
+        public int LugarEnElCatalogo
         {
-            get { return id; }
-            set { id = value; }
+            get { return lugarEnElCatalogo; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("El lugar en el catálogo debe ser un número positivo.");
+                lugarEnElCatalogo = value;
+            }
         }
+
         public string Nombre
         {
             get { return nombre; }
-            set { nombre = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("El nombre no puede estar vacío.");
+                nombre = value;
+            }
         }
+
         public string Genero
         {
             get { return genero; }
-            set { genero = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("El género no puede estar vacío.");
+            }
         }
-        public Videojuego(int id, string nombre, string genero)
+
+        public string Plataforma
         {
-            Id = id;
+            get { return plataforma; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("La plataforma no puede estar vacía.");
+                plataforma = value;
+            }
+        }
+
+        public Videojuego(int lugarEnElCatalogo, string nombre, string genero, string plataforma)
+        {
+            LugarEnElCatalogo = lugarEnElCatalogo;
             Nombre = nombre;
             Genero = genero;
+            Plataforma = plataforma;
         }
+
         public override string ToString()
         {
-            return "(" + Id.ToString() + ", " + Nombre + ", " + Genero + ")";
+            return "(" + LugarEnElCatalogo.ToString() + ", " + Nombre + ", " + Genero + ", " + Plataforma + ")";
         }
     }
 }

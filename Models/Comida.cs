@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,25 +16,49 @@ namespace APS_Eq_TeamAltF4_U3.Models
         public int LugarEnMenu
         {
             get { return lugarEnMenu; }
-            set { lugarEnMenu = value; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("El lugar en menú debe ser un número positivo.");
+                lugarEnMenu = value;
+            }
         }
 
         public string Nombre
         {
-             get { return nombre; }
-            set { nombre = value; }
+            get { return nombre; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("El nombre no puede estar vacío.");
+                if (value.Length > 100)
+                    throw new ArgumentException("El nombre no puede exceder 100 caracteres.");
+                nombre = value;
+            }
         }
 
         public string PaisOrigen
         {
             get { return paisOrigen; }
-            set { paisOrigen = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("El país de origen no puede estar vacío.");
+                if (value.Length > 60)
+                    throw new ArgumentException("El país de origen no puede exceder 60 caracteres.");
+                paisOrigen = value;
+            }
         }
 
         public int Costo
         {
             get { return costo; }
-            set { costo = value; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("El costo no puede ser negativo.");
+                costo = value;
+            }
         }
 
         public Comida(int lugarEnMenu, string nombre, string paisOrigen, int costo)
