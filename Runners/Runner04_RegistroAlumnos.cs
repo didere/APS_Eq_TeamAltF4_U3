@@ -1,12 +1,13 @@
 ﻿
+using System.Linq;
 using APS_Eq_TeamAltF4_U3.Models;
 using Microsoft.Win32;
 
 namespace APS_Eq_TeamAltF4_U3.Runners
 {
-    public class Runner03_RegistroAlumnos
+    public class Runner04_RegistroAlumnos
     {
-        public Runner03_RegistroAlumnos()
+        public Runner04_RegistroAlumnos()
         {
             string ruta = "alumnos.csv";
             List<Alumno> alumnos = new List<Alumno>();
@@ -27,7 +28,13 @@ namespace APS_Eq_TeamAltF4_U3.Runners
 
             {
                 Console.WriteLine("No existen registros previos");
-            }            
+            }
+            /*
+            foreach (Alumno alumno in alumnos)
+            {
+                Console.WriteLine(alumnos);
+            }
+            */
             int alumnos_registrados = alumnos.Count;
             int opcion = 0;
             do
@@ -35,22 +42,19 @@ namespace APS_Eq_TeamAltF4_U3.Runners
                 Console.WriteLine("Ingresa la acción deseada:");
                 Console.WriteLine("1. Registrar alumno");
                 Console.WriteLine("2. Visualizar registros");
-                Console.WriteLine("3. Eliminacion de registros");
+                Console.WriteLine("3. Eliminar alumno");
+                Console.WriteLine("4. Guardar cambios");
                 Console.WriteLine("0. Salir");
                 opcion = Convert.ToInt32(Console.ReadLine());
-                long matricula; string nombre;
                 switch (opcion)
                 {
                     case 1:
                         Console.WriteLine("Ingresa el nombre del alumno:");
-                        nombre = Console.ReadLine();
+                        string nombre = Console.ReadLine();
                         Console.WriteLine("Ingresa la matrícula del alumno:");
-                        matricula = Convert.ToInt64(Console.ReadLine());
+                        long matricula = Convert.ToInt64(Console.ReadLine());
                         Alumno al = new Alumno(matricula, nombre);
-                        StreamWriter sw = new StreamWriter(ruta);
-                        sw.WriteLine(al.Matricula + "," + al.Nombre);
-                        sw.Flush();
-                        sw.Close();
+                        alumnos.Add(al);
                         break;
                     case 2:
                         foreach (string linea in File.ReadLines(ruta))
@@ -58,7 +62,27 @@ namespace APS_Eq_TeamAltF4_U3.Runners
                             Console.WriteLine(linea);
                         }
                         break;
-                    
+                    case 3:
+                        Console.WriteLine("Ingresa la matrícula del alumno a eliminar:");
+                        matricula = Convert.ToInt64(Console.ReadLine());
+                        Alumno temporal = new Alumno(matricula);
+                        bool resultado = alumnos.Contains(new Alumno(matricula));
+                        Console.WriteLine(resultado);
+                        if (resultado)
+                        {
+                            alumnos.Remove(temporal);
+                        }
+                        break;
+                    case 4:
+                    // guardar los cambios en el archivo
+                        StreamWriter sw = new StreamWriter(ruta);
+                        foreach (Alumno alumno in alumnos)
+                        {
+                            sw.WriteLine(alumno.Matricula + "," + alumno.Nombre);
+                        }
+                        sw.Flush();
+                        sw.Close();
+                        break;
                     case 0:
                         Console.WriteLine("Gracias por usar el Programa");
                         break;

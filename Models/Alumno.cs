@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APS_Eq_TeamAltF4_U3.Models
 {
-    public class Alumno
+    public class Alumno : IComparable<Alumno>
     {
         private long matricula;
         private string nombre;
@@ -30,6 +30,17 @@ namespace APS_Eq_TeamAltF4_U3.Models
         public override string ToString()
         {
             return "(" + Matricula.ToString() + ", " + Nombre + ")";
+        }
+
+        public Alumno(long matricula)
+        {
+            Matricula = matricula;
+            Nombre = nombre;
+        }
+        public int CompareTo(Alumno? other)
+        {
+            return 
+            this.Matricula.CompareTo(other.Matricula);
         }
     }
 }
