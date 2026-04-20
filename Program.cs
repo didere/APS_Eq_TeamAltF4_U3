@@ -6,7 +6,7 @@ public class Program
         //new Runner01_ArchivoAlumno();
         //new Runner02_RegistroAlumnos();
         //new Runner03_RegistroComida();
-        new Runner04_RegistroAlumnos();
+        new Runner05_RegistroAlumnos();
         //Elaborar un programa que permita un registro de comidas
         // Elaborar un programa que permita el registro de mascotas
         //Elaborar un programa que permita el registro de videojuegos

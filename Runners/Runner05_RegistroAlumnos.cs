@@ -5,9 +5,9 @@ using Microsoft.Win32;
 
 namespace APS_Eq_TeamAltF4_U3.Runners
 {
-    public class Runner04_RegistroAlumnos
+    public class Runner05_RegistroAlumnos
     {
-        public Runner04_RegistroAlumnos()
+        public Runner05_RegistroAlumnos()
         {
             string ruta = "alumnos.csv";
             List<Alumno> alumnos = new List<Alumno>();
@@ -74,12 +74,17 @@ namespace APS_Eq_TeamAltF4_U3.Runners
                         }
                         break;
                     case 4:
+                        // guardar los cambios en el archivo
                         StreamWriter sw = new StreamWriter(ruta);
-                        foreach (Alumno alumno in alumnos)
+                        for (int i = 0; i < alumnos.Count; i++)
                         {
+                            Alumno alumno = alumnos[i];
                             sw.WriteLine(alumno.Matricula + "," + alumno.Nombre);
-                        }
+                            alumnos.Remove(alumno);
+                        } 
+                        // buffer es el espacio de memoria designado para escribir un archivo
                         sw.Flush();
+                        // cada cambio se queda en el buffer y el flush es la indicacion de escribir
                         sw.Close();
                         break;
                     case 0:
