@@ -10,7 +10,7 @@ namespace APS_Eq_TeamAltF4_U3.Exceptions
     {
         public MatriculaException(string message) : base(message)
         {
-            // Guardar en la base de datos que este error fue triggereado
+            
         }
     }
 }
