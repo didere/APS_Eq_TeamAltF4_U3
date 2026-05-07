@@ -33,6 +33,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                 Console.WriteLine("3. Eliminar mascota");
                 Console.WriteLine("4. Guardar cambios (CSV)");
                 Console.WriteLine("5. Exportar a JSON");
+                Console.WriteLine("6. Filtrar por especie");
                 Console.WriteLine("0. Salir");
                 Console.Write("Opción: ");
                 opcion = Convert.ToInt32(Console.ReadLine());
@@ -133,6 +134,27 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                         swJson.Close();
                         Console.WriteLine("Registros exportados a JSON.");
                         break;
+                    case 6:
+                        if (mascotas.Count == 0)
+                        {
+                            Console.WriteLine("No hay mascotas registradas.");
+                            break;
+                        }
+                        Console.Write("Ingresa el tipo de mascota a filtrar (ej. Perro, Gato): ");
+                        string tipoFiltro = Console.ReadLine();
+                        bool encontrado = false;
+                        foreach (Mascota m in mascotas)
+                        {
+                            if (m.TipoMascota.Equals(tipoFiltro, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Console.WriteLine(m);
+                                encontrado = true;
+                            }
+                        }
+                        if (!encontrado)
+                            Console.WriteLine($"No se encontraron mascotas del tipo {tipoFiltro}.");
+                        break;
+
                     case 0:
                         Console.WriteLine("Gracias por usar el programa.");
                         break;

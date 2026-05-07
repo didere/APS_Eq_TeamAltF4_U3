@@ -41,6 +41,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                 Console.WriteLine("3. Eliminar comida");
                 Console.WriteLine("4. Guardar cambios (CSV)");
                 Console.WriteLine("5. Exportar a JSON");
+                Console.WriteLine("6. Filtrar por país de origen");
                 Console.WriteLine("0. Salir");
                 Console.Write("Opción: ");
                 opcion = Convert.ToInt32(Console.ReadLine());
@@ -139,6 +140,28 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                         swJson.Close();
                         Console.WriteLine("Registros exportados a JSON.");
                         break;
+                    // Dentro del do-while, después del case 5 y antes del case 0
+                    case 6:
+                        if (comidas.Count == 0)
+                        {
+                            Console.WriteLine("No hay comidas registradas.");
+                            break;
+                        }
+                        Console.Write("Ingresa el país de origen a filtrar: ");
+                        string paisFiltro = Console.ReadLine();
+                        bool encontrado = false;
+                        foreach (Comida c in comidas)
+                        {
+                            if (c.PaisOrigen.Equals(paisFiltro, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Console.WriteLine(c);
+                                encontrado = true;
+                            }
+                        }
+                        if (!encontrado)
+                            Console.WriteLine($"No se encontraron comidas de {paisFiltro}.");
+                        break;
+                   
                     case 0:
                         Console.WriteLine("Saliendo...");
                         break;

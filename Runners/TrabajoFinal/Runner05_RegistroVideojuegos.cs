@@ -33,6 +33,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                 Console.WriteLine("3. Eliminar videojuego");
                 Console.WriteLine("4. Guardar cambios (CSV)");
                 Console.WriteLine("5. Exportar a JSON");
+                Console.WriteLine("6. Filtrar por plataforma");
                 Console.WriteLine("0. Salir");
                 Console.Write("Opción: ");
                 opcion = Convert.ToInt32(Console.ReadLine());
@@ -138,6 +139,26 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                         swJson.Flush();
                         swJson.Close();
                         Console.WriteLine("Registros exportados a JSON.");
+                        break;
+                    case 6:
+                        if (videojuegos.Count == 0)
+                        {
+                            Console.WriteLine("No hay videojuegos registrados.");
+                            break;
+                        }
+                        Console.Write("Ingresa la plataforma a filtrar (ej. PlayStation, PC): ");
+                        string plataformaFiltro = Console.ReadLine();
+                        bool encontrado = false;
+                        foreach (Videojuego v in videojuegos)
+                        {
+                            if (v.Plataforma.Equals(plataformaFiltro, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Console.WriteLine(v);
+                                encontrado = true;
+                            }
+                        }
+                        if (!encontrado)
+                            Console.WriteLine($"No se encontraron videojuegos para la plataforma {plataformaFiltro}.");
                         break;
                     case 0:
                         Console.WriteLine("Gracias por usar el programa.");

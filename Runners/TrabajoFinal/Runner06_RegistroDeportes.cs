@@ -33,6 +33,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                 Console.WriteLine("3. Eliminar deporte");
                 Console.WriteLine("4. Guardar cambios (CSV)");
                 Console.WriteLine("5. Exportar a JSON");
+                Console.WriteLine("6. Filtrar por tipo de deporte");
                 Console.WriteLine("0. Salir");
                 Console.Write("Opción: ");
                 opcion = Convert.ToInt32(Console.ReadLine());
@@ -131,6 +132,26 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                         swJson.Flush();
                         swJson.Close();
                         Console.WriteLine("Registros exportados a JSON.");
+                        break;
+                    case 6:
+                        if (deportes.Count == 0)
+                        {
+                            Console.WriteLine("No hay deportes registrados.");
+                            break;
+                        }
+                        Console.Write("Ingresa el tipo de deporte a filtrar (ej. Equipo, Individual): ");
+                        string tipoFiltro = Console.ReadLine();
+                        bool encontrado = false;
+                        foreach (Deporte d in deportes)
+                        {
+                            if (d.TipoDeporte.Equals(tipoFiltro, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Console.WriteLine(d);
+                                encontrado = true;
+                            }
+                        }
+                        if (!encontrado)
+                            Console.WriteLine($"No se encontraron deportes del tipo {tipoFiltro}.");
                         break;
                     case 0:
                         Console.WriteLine("Gracias por usar el programa.");

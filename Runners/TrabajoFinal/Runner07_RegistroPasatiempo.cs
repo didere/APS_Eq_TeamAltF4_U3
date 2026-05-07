@@ -33,6 +33,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                 Console.WriteLine("3. Eliminar pasatiempo");
                 Console.WriteLine("4. Guardar cambios (CSV)");
                 Console.WriteLine("5. Exportar a JSON");
+                Console.WriteLine("6. Filtrar por tipo de pasatiempo");
                 Console.WriteLine("0. Salir");
                 Console.Write("Opción: ");
                 opcion = Convert.ToInt32(Console.ReadLine());
@@ -129,6 +130,26 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                         swJson.Flush();
                         swJson.Close();
                         Console.WriteLine("Registros exportados a JSON.");
+                        break;
+                    case 6:
+                        if (pasatiempos.Count == 0)
+                        {
+                            Console.WriteLine("No hay pasatiempos registrados.");
+                            break;
+                        }
+                        Console.Write("Ingresa la frecuencia a filtrar (ej. Diario, Semanal): ");
+                        string frecuenciaFiltro = Console.ReadLine();
+                        bool encontrado = false;
+                        foreach (Pasatiempo p in pasatiempos)
+                        {
+                            if (p.Frecuencia.Equals(frecuenciaFiltro, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Console.WriteLine(p);
+                                encontrado = true;
+                            }
+                        }
+                        if (!encontrado)
+                            Console.WriteLine($"No se encontraron pasatiempos con frecuencia {frecuenciaFiltro}.");
                         break;
                     case 0:
                         Console.WriteLine("Gracias por usar el programa.");
