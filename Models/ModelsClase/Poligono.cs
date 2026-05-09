@@ -28,8 +28,6 @@ namespace APS_Eq_TeamAltF4_U3.Models.ModelsClase
         {
             return lados * longitudLado;
         }
-
         public abstract int CalcArea(int[] parametros);
-    
     }
 }

@@ -139,8 +139,7 @@ namespace APS_Eq_TeamAltF4_U3.Runners.TrabajoFinal
                         swJson.Flush();
                         swJson.Close();
                         Console.WriteLine("Registros exportados a JSON.");
-                        break;
-                    // Dentro del do-while, después del case 5 y antes del case 0
+                        break;                    
                     case 6:
                         if (comidas.Count == 0)
                         {
